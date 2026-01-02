@@ -2,13 +2,12 @@
 
 variable "region" {
     type = set(string)
-    default = var.region
-  
+    default = ["us-east-1", "us-west-2", "eu-west-1"]
 }
 
 variable "ec2_instance_type" {
     type = list(string)
-    default = var.ec2_instance_type
+    default = [ "t2.micro", "t2.small", "t3.small" ]
   
 }
 
