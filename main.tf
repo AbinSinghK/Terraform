@@ -1,9 +1,9 @@
 resource "aws_instance" "Appserver" {
   ami           = "resolve:ssm:/aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-x86_64"
-  instance_type = var.ec2_instance_type[1]
+  instance_type =  tolist(var.ec2_instance_type)[1]
   region = var.region[2]
-  count = var.config[2]
-  monitoring = var.config[1]
+  count = var.config.instance_count
+  monitoring = var.config.monitoring
   tags = var.environment_tags
 }
 
