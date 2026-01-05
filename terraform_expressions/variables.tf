@@ -6,3 +6,12 @@ variable "environment_tags" {
     }
   
 }
+
+variable "environment" {
+    type = string 
+}
+
+variable "instance" {
+    type = list(string)
+  
+}
