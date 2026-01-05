@@ -29,5 +29,11 @@ resource "aws_security_group" "dynamic_sg" {
   }
 }
 
+locals {
+  all_instance_ids = aws_instance.Appserver[*].id
 
+}
 
+output "instances" {
+value = local.all_instance_ids
+}
