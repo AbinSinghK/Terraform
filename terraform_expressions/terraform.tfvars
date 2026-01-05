@@ -1,2 +1,2 @@
-environment = "dev"
+environment = "production"
 instance_count = 2
