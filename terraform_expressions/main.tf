@@ -14,12 +14,15 @@ resource "aws_security_group" "dynamic_sg" {
 
 resource "ingress_rule" "allow_tls_ipv4" {
     name = "security_group"
-    dynamic "ingress_value" {
+    
+    dynamic "ingress" {
         for_each = var.ingress_rules
-        cidr_ipv4         = ingress_value.value.cidr_blocks
-        from_port         = ingress_value.value.from_port
-        ip_protocol       = ingress_value.value.protocol
-        to_port           = ingress_value.value.to_port
+        content{
+             cidr_ipv4         = ingress.value.cidr_blocks
+             from_port         = ingress.value.from_port
+             ip_protocol       = ingress.value.protocol
+             to_port           = ingress.value.to_port
+    }
     }
   
 }
