@@ -13,16 +13,15 @@ resource "aws_security_group" "dynamic_sg" {
 }
 
 resource "ingress_rule" "allow_tls_ipv4" {
-  security_group_id = aws_security_group.dynamic_sg.id
-  cidr_ipv4         = ["10.0.0.0/16"]
-  from_port         = 443
-  ip_protocol       = "tcp"
-  to_port           = 443
+    name = "security_group"
+    dynamic "ingress" {
+        for_each = var.ingress_rules
+        cidr_ipv4         = ingress.value.cidr_blocks
+        from_port         = ingress.value.from_port
+        ip_protocol       = ingress.value.protocol
+        to_port           = ingress.value.to_port
+    }
+  
 }
 
 
-resource "egress_rule" "all_traffic_ipv4" {
-  security_group_id = aws_security_group.dynamic_sg.id
-  cidr_ipv4         = "0.0.0.0/0"
-  ip_protocol       = "-1" 
-}
