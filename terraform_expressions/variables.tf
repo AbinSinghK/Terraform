@@ -11,10 +11,6 @@ variable "environment" {
     type = string 
 }
 
-variable "instance" {
-    type = list(string)
-  
-}
 
 variable "instance_count" {
 type = number
