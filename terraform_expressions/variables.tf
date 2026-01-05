@@ -18,5 +18,12 @@ variable "instance" {
 
 variable "instance_count" {
 type = number
+
+}
+
+variable "ec2_instance_type" {
+
+type = list(string)
+default = [ "t2.micro","t3.micro" ]
   
 }
