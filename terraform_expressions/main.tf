@@ -7,24 +7,27 @@ resource "aws_instance" "Appserver" {
 
 resource "aws_security_group" "dynamic_sg" {
   name        = "allow_tls"
-  description = "Allow TLS inbound traffic and all outbound traffic"
+  description = "Allow TLS inbound and all outbound"
+  tags        = var.environment_tags
 
-  tags = var.environment_tags
+  dynamic "ingress" {
+    for_each = var.ingress_rules
+    content {
+      cidr_blocks = ingress.value.cidr_blocks
+      from_port   = ingress.value.from_port
+      protocol = ingress.value.protocol
+      to_port     = ingress.value.to_port
+      
+    }
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 }
 
-resource "ingress_rule" "allow_tls_ipv4" {
-    name = "security_group"
-    
-    dynamic "ingress" {
-        for_each = var.ingress_rules
-        content{
-             cidr_ipv4         = ingress.value.cidr_blocks
-             from_port         = ingress.value.from_port
-             ip_protocol       = ingress.value.protocol
-             to_port           = ingress.value.to_port
-    }
-    }
-  
-}
 
 
