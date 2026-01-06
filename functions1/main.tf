@@ -1,9 +1,11 @@
 locals {
   formatted_project_name = lower(replace(var.project_name," ", "-"))
+  new_tag = merge(var.default_tags,var.environment_tags)
+  formatted_bucket_name = replace(replace(lower(substr(var.bucket_name, 0, 63))," ", ""), "!", "")
 }
 
 resource "aws_s3_bucket" "example" {
-  bucket = "my-tf-test-bucket"
+  bucket = local.formatted_bucket_name
 
-  tags = merge(var.default_tags,var.environment_tags)
+  tags = local.new_tag
 }

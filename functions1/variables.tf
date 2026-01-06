@@ -21,3 +21,9 @@ default = {
 }
 
 }
+
+variable "bucket_name" {
+
+default = "ProjectAlphaStorageBucket with CAPS and Spaces!!!"
+  
+}
