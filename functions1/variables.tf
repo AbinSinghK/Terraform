@@ -24,6 +24,15 @@ default = {
 
 variable "bucket_name" {
 
+    type = string
+
 default = "ProjectAlphaStorageBucket with CAPS and Spaces!!!"
+  
+}
+
+variable "allowed_ports" {
+
+    type = string
+    default = "80,443,8080,3306"
   
 }
