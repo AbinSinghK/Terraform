@@ -48,5 +48,5 @@ variable "instance_sizes" {
 }
 
 variable "environment" {
- default = "staging" 
+ default = "abin" 
 }
