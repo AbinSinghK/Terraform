@@ -95,6 +95,14 @@ variable "user_locations" {
 
 variable "default_locations" {
     type = list(string)
+
+  
+}
+
+
+variable "monthly_costs" {
+
+    type = list(number)
     
   
 }
