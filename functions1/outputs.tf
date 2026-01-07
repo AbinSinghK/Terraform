@@ -83,3 +83,15 @@ output "avg_cost" {
     value = local.avg_cost
   
 }
+
+output "timme" {
+
+    value = local.current_timestamp
+  
+}
+
+output "timestamp_name" {
+
+    value = local.timestamp_name
+  
+}
