@@ -16,6 +16,9 @@ locals {
 
 instance_size = lookup(var.instance_sizes,var.environment,"t3.micro")
 
+all_locations = concat(var.user_locations, var.default_locations)
+unique_locations = toset(loal.all_locations)
+
 }
 
 

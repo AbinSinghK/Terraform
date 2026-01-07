@@ -67,3 +67,34 @@ variable "instance_types" {
     }
   
 }
+
+variable "bucket_naming" {
+
+    type = string
+
+
+    validation {
+      condition = endswith(var.bucket_naming, "_backup")
+      error_message = "bucket name must end with '_backup'"
+    }
+  
+}
+
+variable "credential" {
+
+    type = string
+    sensitive = true
+  
+}
+
+variable "user_locations" {
+    type = list(string)
+    
+  
+}
+
+variable "default_locations" {
+    type = list(string)
+    
+  
+}
