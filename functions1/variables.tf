@@ -50,3 +50,20 @@ variable "instance_sizes" {
 variable "environment" {
  default = "abin" 
 }
+
+variable "instance_types" {
+
+
+
+    validation {
+      condition = length(var.instance_types) >=2 && length(var.instance_types) <=20
+      error_message = "Instance type must be between 2 - 20 Characters"
+    }
+
+    validation {
+        condition = can(regex("^t[2-3]\\.",var.instance_types))
+        error_message = "Instance type must start with t2 or t3"
+  
+    }
+  
+}

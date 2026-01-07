@@ -17,3 +17,9 @@ output "instance_size" {
     value = local.instance_size
   
 }
+
+output "instance_results" {
+
+    value = var.instance_types
+  
+}
