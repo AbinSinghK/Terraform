@@ -19,6 +19,11 @@ instance_size = lookup(var.instance_sizes,var.environment,"t3.micro")
 all_locations = concat(var.user_locations, var.default_locations)
 unique_locations = toset(local.all_locations)
 
+positive_costs = [for cost in (var.monthly_costs) : abs(cost) ]
+max_cost = max(local.positive_costs...)
+min_cost = min(loal.positive_costs)
+total_cost = sum(local.positive_costs)
+avg_cost = local.positive_costs / length(local.positive_costs)
 }
 
 

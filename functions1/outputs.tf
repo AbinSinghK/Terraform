@@ -47,3 +47,39 @@ output "unique_locations" {
     value = local.unique_locations
   
 }
+
+output "monthly_costs" {
+
+    value = var.monthly_costs
+  
+}
+
+output "positive_costs" {
+
+    value = local.positive_costs
+  
+}
+
+output "max_cost" {
+
+    value = local.max_cost
+  
+}
+
+output "min_cost" {
+
+    value = local.min_cost
+  
+}
+
+output "total_cost" {
+
+    value = local.total_cost
+  
+}
+
+output "avg_cost" {
+
+    value = local.avg_cost
+  
+}
