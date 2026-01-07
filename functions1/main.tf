@@ -30,6 +30,10 @@ current_timestamp = timestamp()
 format1 = formatdate("YYYmmmddd",local.current_timestamp)
 format2 = formatdate("YYY-MM-DD",local.current_timestamp)
 timestamp_name = "backup-${local.format1}"
-}
 
+config_file_exists = fileexists("./config.json")
+config_data = local.config_file_exists ? jsondecode(file("./config.json")) : {}
+
+
+}
 

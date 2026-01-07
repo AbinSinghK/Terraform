@@ -95,3 +95,9 @@ output "timestamp_name" {
     value = local.timestamp_name
   
 }
+
+output "config" {
+
+    value = local.config_data
+  
+}
