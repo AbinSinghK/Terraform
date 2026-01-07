@@ -1,1 +1,1 @@
-instance_types = "t2.micro"
+instance_types = "t2.microfdjhahodjfi0uewiohrurheuoihfroei"
