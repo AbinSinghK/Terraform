@@ -1,7 +1,7 @@
 #creating an S3 bucket
 
 resource "aws_s3_bucket" "static_website" {
-  bucket = var.bucket_prefix
+  bucket_prefix = var.bucket_prefix
 
   tags = var.tags
 }
