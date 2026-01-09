@@ -23,6 +23,15 @@ variable "secondary_cidr_block" {
     type = string 
 }
 
+
+variable "primary_subnet_cidr" {
+  type = string
+}
+
+variable "secondary_subnet_cidr" {
+  type = string
+}
+
 variable "instance_type" {
     type = string
   
