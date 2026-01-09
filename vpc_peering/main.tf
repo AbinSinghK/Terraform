@@ -20,7 +20,7 @@ resource "aws_subnet" "primary_subnet" {
   provider = aws.primary
   vpc_id     = aws_vpc.primary_vpc.id
   cidr_block = var.primary_cidr_block
-  availability_zone = data.aws_availability_zones.primary[0]
+  availability_zone = data.aws_availability_zones.primary.names[0]
   map_public_ip_on_launch = true
 
   tags = var.tags
@@ -30,7 +30,7 @@ resource "aws_subnet" "secondary_subnet" {
   provider = aws.secondary
   vpc_id     = aws_vpc.secondary_vpc.id
   cidr_block = var.secondary_cidr_block
-  availability_zone = data.aws_availability_zones.secondary[0]
+  availability_zone = data.aws_availability_zones.secondary.names[0]
   map_public_ip_on_launch = true
 
   tags = var.tags
@@ -106,7 +106,7 @@ resource "aws_route" "primary_to_secondary" {
   provider = aws.primary
   route_table_id            = aws_route_table.primary_rt.id
   destination_cidr_block    = var.secondary_cidr_block
-  vpc_peering_connection_id = aws_vpc_peering_connection_accepter.primary_to_secondary.id
+  vpc_peering_connection_id = aws_vpc_peering_connection.primary_to_secondary.id
 
   depends_on = [ aws_vpc_peering_connection_accepter.secondary_accepter ]
 }
@@ -114,7 +114,7 @@ resource "aws_route" "primary_to_secondary" {
 resource "aws_route" "secondary_to_primary" {
   provider = aws.secondary
   route_table_id            = aws_route_table.secondary_rt.id
-  destination_cidr_block    = var.primary_cidr_block.id
+  destination_cidr_block    = var.primary_cidr_block
   vpc_peering_connection_id = aws_vpc_peering_connection.primary_to_secondary.id
 
   depends_on = [ aws_vpc_peering_connection_accepter.secondary_accepter ]
