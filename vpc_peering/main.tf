@@ -55,7 +55,7 @@ resource "aws_route_table" "primary_rt" {
   vpc_id = aws_vpc.primary_vpc.id
 
   route {
-    cidr_block = var.primary_subnet_cidr
+    cidr_block = "0.0.0.0/0"
     gateway_id = aws_internet_gateway.primary_igw.id
   }
 
@@ -67,7 +67,7 @@ resource "aws_route_table" "secondary_rt" {
   vpc_id = aws_vpc.secondary_vpc.id
 
   route {
-    cidr_block = var.secondary_subnet_cidr
+    cidr_block = "0.0.0.0/0"
     gateway_id = aws_internet_gateway.secondary_igw.id
   }
 
